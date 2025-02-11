@@ -221,6 +221,47 @@ public class HighwayGraph
         // print summary of the graph
         System.out.println(g);
 
-	// ADD CODE HERE TO COMPLETE LAB TASKS
+	    // ADD CODE HERE TO COMPLETE LAB TASKS
+        Vertex north = g.vertices[0];
+        Vertex south = g.vertices[0];
+        Vertex east = g.vertices[0];
+        Vertex west = g.vertices[0];
+        Vertex shortest = g.vertices[0];
+        Vertex longest = g.vertices[0];
+
+        for (Vertex v : g.vertices)
+        {
+            if (v.point.lat > north.point.lat)
+            {
+                north = v;
+            }
+            if (v.point.lat < south.point.lat)
+            {
+                south = v;
+            }
+            if (v.point.lng > east.point.lng)
+            {
+                east = v;
+            }
+            if (v.point.lng < west.point.lng)
+            {
+                west = v;
+            }
+            if (v.label.length() < shortest.label.length())
+            {
+                shortest = v;
+            }
+            if (v.label.length() > longest.label.length())
+            {
+                longest = v;
+            }
+        }
+        //Print each extreme
+        System.out.println("North Extreme: " + north.label);
+        System.out.println("South Extreme: " + south.label);
+        System.out.println("East Extreme: " + east.label);
+        System.out.println("West Extreme: " + west.label);
+        System.out.println("Shortest Label: " + shortest.label);
+        System.out.println("Longest label: " + longest.label);
     }
 }
