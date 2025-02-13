@@ -271,6 +271,8 @@ public class HighwayGraph
         Edge longestLength = g.vertices[0].head;
         Edge shortestLabel = g.vertices[0].head;
         Edge longestLabel = g.vertices[0].head;
+        double totalEdgeLength = shortestLength.length;
+        int edgesVisited = 1;
 
         for (int i = 1; i < g.vertices.length; i++)
         {
@@ -291,6 +293,9 @@ public class HighwayGraph
             {
                 shortestLength = e;
             }
+            totalEdgeLength += e.length;
+            edgesVisited++;
+
         }
 
         //Print each Edge extreme case
@@ -298,6 +303,8 @@ public class HighwayGraph
         System.out.println("Longest Edge Label: " + longestLabel.label);
         System.out.println("Shortest Edge Length: " + shortestLength.label + ": " + shortestLength.length);
         System.out.println("Longest Edge Length: " + longestLength.label + ": " + longestLength.length);
+        System.out.println("Total Length of all Edges: " + totalEdgeLength);
+        System.out.println("Edges Visited: " + edgesVisited);
 
 
     }
