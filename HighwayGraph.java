@@ -222,6 +222,8 @@ public class HighwayGraph
         System.out.println(g);
 
 	    // ADD CODE HERE TO COMPLETE LAB TASKS
+
+        //Code to find directional extremes and shortest/longest vertex labels
         Vertex north = g.vertices[0];
         Vertex south = g.vertices[0];
         Vertex east = g.vertices[0];
@@ -263,5 +265,40 @@ public class HighwayGraph
         System.out.println("West Extreme: " + west.label);
         System.out.println("Shortest Label: " + shortest.label);
         System.out.println("Longest label: " + longest.label);
+
+        //Code to find shortest/longest edge labels and shortest/longest edge lengths
+        Edge shortestLength = g.vertices[0].head;
+        Edge longestLength = g.vertices[0].head;
+        Edge shortestLabel = g.vertices[0].head;
+        Edge longestLabel = g.vertices[0].head;
+
+        for (int i = 1; i < g.vertices.length; i++)
+        {
+            Edge e = g.vertices[i].head;
+            if (e.label.length() < shortestLabel.label.length())
+            {
+                shortestLabel = e;
+            }
+            if (e.label.length() > longestLabel.label.length())
+            {
+                longestLabel = e;
+            }
+            if (e.length > longestLength.length)
+            {
+                longestLength = e;
+            }
+            if (e.length < shortestLength.length)
+            {
+                shortestLength = e;
+            }
+        }
+
+        //Print each Edge extreme case
+        System.out.println("Shortest Edge Label: " + shortestLabel.label);
+        System.out.println("Longest Edge Label: " + longestLabel.label);
+        System.out.println("Shortest Edge Length: " + shortestLength.label + ": " + shortestLength.length);
+        System.out.println("Longest Edge Length: " + longestLength.label + ": " + longestLength.length);
+
+
     }
 }
