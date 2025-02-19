@@ -13,8 +13,6 @@
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class HighwayGraph
@@ -114,6 +112,7 @@ public class HighwayGraph
             length = 0.0;
             LatLng prevPoint = startPoint;
             if (points != null) {
+              //  if(next > dst)
                 for (int pointNum = 0; pointNum < points.length; pointNum++) {
                     length += prevPoint.distanceTo(points[pointNum]);
                     prevPoint = points[pointNum];
@@ -295,6 +294,37 @@ public class HighwayGraph
             }
             totalEdgeLength += e.length;
             edgesVisited++;
+
+            //------VVVVV----------Edges Visited 02/18/25-----VVVVVV-----------
+
+
+        Scanner t = new Scanner(new File(args[0]));
+        HighwayGraph h = new HighwayGraph(t);
+        t.close();
+        // print summary of the graph
+        System.out.println(h);
+        
+
+
+      // Initialize shortestLength and longestLength with the first edge
+
+// Loop through all vertices and edges to find the shortest and longest edges
+
+for (Vertex v : g.vertices) {//
+   e = v.head;
+   while (e != null) {
+       if (e.length > longestLength.length) {
+           longestLength = e;
+       }
+       if (e.length < shortestLength.length) {
+           shortestLength = e;
+       }
+       totalEdgeLength += e.length;
+       edgesVisited++;
+       e = e.next;
+   }
+}
+
 
         }
 
