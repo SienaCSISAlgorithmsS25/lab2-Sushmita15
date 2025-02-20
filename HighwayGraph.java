@@ -197,7 +197,6 @@ public class HighwayGraph
                     }
                 }
                 s.append(" length " + df.format(e.length) + "\n");
-                e = e.next;
             }
         }
 
@@ -309,18 +308,33 @@ public class HighwayGraph
       // Initialize shortestLength and longestLength with the first edge
 
 // Loop through all vertices and edges to find the shortest and longest edges
+int[] edgeName = new int[g.numEdges];
+int countEdgeLength = 0;
 
 for (Vertex v : g.vertices) {//
+   //This gives us our first edge for the vertex
    e = v.head;
+   int nextID = 0;
+
    while (e != null) {
-       if (e.length > longestLength.length) {
+	for (int j = 0; j <= nextID; j++){
+		if (e.dest == edgeName[j]){
+			return;
+		}
+	edgeName[i] = e.dest;
+	nextID++;
+// Go through the array of ints to see if it has been added yet, if not then add it and go through if statements
+
+       	if (e.length > longestLength.length) {
            longestLength = e;
        }
-       if (e.length < shortestLength.length) {
+       	if (e.length < shortestLength.length) {
            shortestLength = e;
        }
-       totalEdgeLength += e.length;
-       edgesVisited++;
+       	totalEdgeLength += e.length;
+       	edgesVisited++;
+       }
+       countEdgeLength += e.dest;
        e = e.next;
    }
 }
